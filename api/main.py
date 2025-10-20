@@ -4,6 +4,7 @@ import qrcode
 import boto3
 import os
 from io import BytesIO
+import traceback
 
 # Loading Environment variable (AWS Access Key and Secret Key)
 from dotenv import load_dotenv
@@ -27,9 +28,11 @@ app.add_middleware(
 s3 = boto3.client(
     's3',
     aws_access_key_id= os.getenv("AWS_ACCESS_KEY"),
-    aws_secret_access_key= os.getenv("AWS_SECRET_KEY"))
+    aws_secret_access_key= os.getenv("AWS_SECRET_KEY"),
+    region_name='eu-west-1'
+)
 
-bucket_name = 'YOUR_BUCKET_NAME' # Add your bucket name here
+bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
 
 @app.post("/generate-qr/")
 async def generate_qr(url: str):
@@ -55,11 +58,14 @@ async def generate_qr(url: str):
 
     try:
         # Upload to S3
-        s3.put_object(Bucket=bucket_name, Key=file_name, Body=img_byte_arr, ContentType='image/png', ACL='public-read')
+        print(f"Uploading object to bucket: {bucket_name}, key: {file_name}")
+        s3.put_object(Bucket=bucket_name, Key=file_name, Body=img_byte_arr, ContentType='image/png')
         
-        # Generate the S3 URL
-        s3_url = f"https://{bucket_name}.s3.amazonaws.com/{file_name}"
+        # Generate the signed S3 URL
+        s3_url = s3.generate_presigned_url('get_object',Params={'Bucket': bucket_name, 'Key': file_name},ExpiresIn=3600  )
         return {"qr_code_url": s3_url}
     except Exception as e:
+        print("Error while uploading to S3:")
+        traceback.print_exc() 
         raise HTTPException(status_code=500, detail=str(e))
     
