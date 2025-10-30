@@ -12,7 +12,8 @@ jobs:
         run: |
           docker build ./api/ -t radhihudijan/qr-code-app-api:${{ github.run_id }}
       - name: push docker image to docker hub
-        run: | 
+        run: |
+          docker login -u radhi.hudijan -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push radhihudijan/qr-code-app-api:${{ github.run_id }}
 
     
