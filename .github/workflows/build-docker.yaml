@@ -10,9 +10,9 @@ jobs:
         uses: actions/checkout@v4
       - name: build docker Image
         run: |
-          docker build ./api/ -t radhihudijan/qr-code-app-api:${date + %s}
+          docker build ./api/ -t radhihudijan/qr-code-app-api:$(date +%s)
       - name: push docker image to docker hub
         run: | 
-          docker push radhihudijan/qr-code-app-api:${date + %s}
+          docker push radhihudijan/qr-code-app-api:$(date +%s)
 
     
