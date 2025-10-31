@@ -1,14 +1,20 @@
 name: Build and Push Docker Image
 on:
-  [workflow_dispatch]
+  # [workflow_dispatch]
+  push:
+    branches:
+      - main
+    paths:    # Trigger only if dockerfiles are changed
+      - '/api/dockerfile'
+      - '/front-end-nextjs/dockerfile'
 
 jobs:
   publish_image:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout 
+      - name: checkout # Checkout the repository
         uses: actions/checkout@v4
-      - name: build docker Image
+      - name: build docker Image  
         run: |
           docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend:${{ github.run_id }}
           docker build ./api/ -t radhihudijan/qr-code-app-api:${{ github.run_id }}
