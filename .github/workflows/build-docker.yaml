@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - name: build docker Image
         run: |
-          docker build ./frontend/ -t radhihudijan/qr-code-app-frontend:${{ github.run_id }}
+          docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend:${{ github.run_id }}
           docker build ./api/ -t radhihudijan/qr-code-app-api:${{ github.run_id }}
       - name: push docker image to docker hub
         run: |
