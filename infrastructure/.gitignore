@@ -1,0 +1,28 @@
+# Local .terraform configuration files
+.terraform/
+.terraform.lock.hcl
+
+
+# Terraform files
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfplan
+
+# Terraform directories
+.terraform/
+.terraformrc
+
+# Sensitive files
+secret.tfvars
+
+# IDE/editor files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+
+# Logs
+*.log

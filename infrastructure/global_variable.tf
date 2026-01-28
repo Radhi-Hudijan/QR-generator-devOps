@@ -8,6 +8,4 @@ locals {
 
   aws_region = "eu-central-1"
 
-  prov
-  
 }
