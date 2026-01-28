@@ -15,15 +15,15 @@ provider "aws" {
 }
 
 // This bucket is created to store Terraform state files
-resource "aws_s3_bucket" "qr_generator_backend" {
-  bucket = "qr-generator-devops-terraform-state-backend-${terraform.workspace}"
-  tags   = local.default_tags
-}
+# resource "aws_s3_bucket" "qr_generator_backend" {
+#   bucket = "qr-generator-devops-terraform-state-backend-${terraform.workspace}"
+#   tags   = local.default_tags
+# }
 
-resource "aws_s3_bucket_versioning" "versioning" {
-  bucket = aws_s3_bucket.qr_generator_backend.id
+# resource "aws_s3_bucket_versioning" "versioning" {
+#   bucket = aws_s3_bucket.qr_generator_backend.id
 
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
