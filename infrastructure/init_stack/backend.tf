@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "qr-generator-devops-terraform-state-backend-${terraform.workspace}"
+    bucket         = "qr-generator-devops-terraform-state-backend-dev"
     key            = "terraform.tfstate"
-    region         = local.aws_region
+    region         = "eu-central-1"
     dynamodb_table = "qr-generator-devops-terraform-locks"
 
   }
