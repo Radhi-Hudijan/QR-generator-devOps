@@ -2,7 +2,7 @@ locals {
   default_tags = {
     project     = "qr-generator-devOps"
     Owner       = "radhi.hudijan"
-    Environment = "${terraform.workspace}-environment"
+    Environment = "${terraform.workspace}"
     ManagedBy   = "Terraform"
   }
 

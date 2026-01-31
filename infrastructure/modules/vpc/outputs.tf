@@ -17,12 +17,12 @@ output "vpc_cidr_block" {
 
 output "igw_id" {
   description = "The ID of the Internet Gateway"
-  value       = aws_internet_gateway.main.id
+  value       = try(aws_internet_gateway.main[0].id, null)
 }
 
 output "igw_arns" {
   description = "The ARN of the Internet Gateway"
-  value       = aws_internet_gateway.main.arn
+  value       = try(aws_internet_gateway.main[0].arn, null)
 
 }
 
@@ -49,10 +49,10 @@ output "public_subnet_arns" {
 ### public route table Output ###
 output "public_route_table_id" {
   description = "The ID of the public route table"
-  value       = aws_route_table.public.id
+  value       = try(aws_route_table.public[0].id, null)
 }
 output "public_route_table_arn" {
   description = "The ARN of the public route table"
-  value       = aws_route_table.public.arn
+  value       = try(aws_route_table.public[0].arn, null)
 }
 
