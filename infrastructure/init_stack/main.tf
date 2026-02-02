@@ -16,7 +16,7 @@ provider "aws" {
 
 // This bucket is created to store Terraform state files
 # resource "aws_s3_bucket" "qr_generator_backend" {
-#   bucket = "qr-generator-devops-terraform-state-backend-${terraform.workspace}"
+#   bucket = "qr-generator-devops-terraform-state-backend"
 #   tags   = local.default_tags
 # }
 

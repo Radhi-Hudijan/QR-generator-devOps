@@ -53,12 +53,12 @@ variable "igw_tags" {
 
 ###### Public Subnet Variables ######
 
-variable "public_subnets_cidrs" {
+variable "public_subnet_cidrs" {
   description = "List of CIDR blocks for public subnets"
   type        = list(string)
 
   validation {
-    condition     = length(var.public_subnets_cidrs) > 0 && length(var.public_subnets_cidrs) <= 4
+    condition     = length(var.public_subnet_cidrs) > 0 && length(var.public_subnet_cidrs) <= 4
     error_message = "Must have between 1 and 4 public subnets."
   }
 

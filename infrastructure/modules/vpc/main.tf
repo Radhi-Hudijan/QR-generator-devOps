@@ -22,7 +22,7 @@ resource "aws_vpc" "main" {
 ############
 
 resource "aws_internet_gateway" "main" {
-  count = var.create_igw && length(var.public_subnets_cidrs) > 0 ? 1 : 0
+  count = var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   vpc_id = aws_vpc.main.id
 
@@ -41,9 +41,9 @@ resource "aws_internet_gateway" "main" {
 ########
 
 resource "aws_subnet" "public" {
-  count                   = length(var.public_subnets_cidrs)
+  count                   = length(var.public_subnet_cidrs)
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = var.public_subnets_cidrs[count.index]
+  cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = var.map_public_ip_on_launch
 
@@ -63,7 +63,7 @@ resource "aws_subnet" "public" {
 ########
 
 resource "aws_route_table" "public" {
-  count  = length(var.public_subnets_cidrs) > 0 ? 1 : 0
+  count  = length(var.public_subnet_cidrs) > 0 ? 1 : 0
   vpc_id = aws_vpc.main.id
 
   tags = merge(
@@ -78,7 +78,7 @@ resource "aws_route_table" "public" {
 
 # Create route to Internet Gateway in public route table
 resource "aws_route" "public_internet_access" {
-  count                  = length(var.public_subnets_cidrs) > 0 && var.create_igw ? 1 : 0
+  count                  = length(var.public_subnet_cidrs) > 0 && var.create_igw ? 1 : 0
   route_table_id         = aws_route_table.public[0].id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.main[0].id
@@ -86,7 +86,7 @@ resource "aws_route" "public_internet_access" {
 
 # Associate public subnets with the public route table
 resource "aws_route_table_association" "public" {
-  count          = length(var.public_subnets_cidrs)
+  count          = length(var.public_subnet_cidrs)
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public[0].id
 }
