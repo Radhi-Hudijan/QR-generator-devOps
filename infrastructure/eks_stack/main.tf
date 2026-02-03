@@ -24,6 +24,21 @@ module "eks" {
   name               = "${local.default_tags.project}-eks"
   kubernetes_version = "1.33"
 
+  enable_cluster_creator_admin_permissions = true
+  endpoint_private_access                  = true
+  endpoint_public_access                   = true
+
+  # EKS Addons
+  addons = {
+    coredns = {}
+    eks-pod-identity-agent = {
+      before_compute = true
+    }
+    kube-proxy = {}
+    vpc-cni = {
+      before_compute = true
+    }
+  }
 
   vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
   subnet_ids = data.terraform_remote_state.vpc.outputs.public_subnet_ids
