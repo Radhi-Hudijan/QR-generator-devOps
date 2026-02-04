@@ -10,7 +10,7 @@ export async function POST(request) {
   }
 // test comment
   try {
-    const response = await axios.post(`http://qr-api-service/generate-qr/?url=${encodeURIComponent(url)}`);
+    const response = await axios.post(`http://qr-code-backend-service/generate-qr/?url=${encodeURIComponent(url)}`);
     return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error generating QR Code:', error);
