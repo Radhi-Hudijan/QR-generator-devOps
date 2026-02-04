@@ -16,12 +16,12 @@ jobs:
         uses: actions/checkout@v4
       - name: build docker Image  
         run: |
-          docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend:latest
+          docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend:latest1
           docker build ./api/ -t radhihudijan/qr-code-app-api:${{ github.run_id }}
       - name: push docker image to docker hub
         run: |
           docker login -u radhihudijan -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push radhihudijan/qr-code-app-frontend:latest
+          docker push radhihudijan/qr-code-app-frontend:latest1
           docker push radhihudijan/qr-code-app-api:${{ github.run_id }}
 
     
