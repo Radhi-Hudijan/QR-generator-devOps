@@ -15,12 +15,17 @@ spec:
       labels:
         app: qr-code-backend-app
     spec:
+      serviceAccountName: qr-code-backend-service-account
       containers:
       - name: qr-code-backend-app-backend
-        image: radhihudijan/qr-code-app-api:18970215118
+        image: radhihudijan/qr-code-app-api:21687505068
         ports:
         - name: http
           containerPort: 80
+        envFrom:
+        - secretRef:
+            name: qr-backend-secrets
+
 
 --- 
 apiVersion: v1
