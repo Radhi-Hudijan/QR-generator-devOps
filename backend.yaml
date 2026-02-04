@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qr-code-backend-deployment
+  namespace: qr-code-backend-app
+  labels:
+    app: qr-code-backend-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: qr-code-backend-app
+  template:
+    metadata:
+      labels:
+        app: qr-code-backend-app
+    spec:
+      containers:
+      - name: qr-code-backend-app-backend
+        image: radhihudijan/qr-code-app-api:18970215118
+        ports:
+        - name: http
+          containerPort: 80

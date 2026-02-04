@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qr-code-frontend-deployment
+  namespace: qr-code-frontend-app
+  labels:
+    app: qr-code-frontend-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: qr-code-frontend-app
+  template:
+    metadata:
+      labels:
+        app: qr-code-frontend-app
+    spec:
+      containers:
+      - name: qr-code-frontend-app-frontend
+        image: docker.io/radhihudijan/qr-code-app-frontend:18970215118
+        ports:
+        - name: http
+          containerPort: 3000
