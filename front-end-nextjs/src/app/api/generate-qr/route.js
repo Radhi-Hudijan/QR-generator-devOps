@@ -8,9 +8,9 @@ export async function POST(request) {
   if (!url) {
     return NextResponse.json({ error: 'URL is required' }, { status: 400 });
   }
-// update the backend service URL to match the new deployment for the backend
+
   try {
-    const response = await axios.post(`http://qr-code-backend-service/generate-qr/?url=${encodeURIComponent(url)}`);
+    const response = await axios.post(`http://qr-api-service/generate-qr/?url=${encodeURIComponent(url)}`);
     return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error generating QR Code:', error);
