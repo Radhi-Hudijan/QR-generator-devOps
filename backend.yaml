@@ -18,7 +18,7 @@ spec:
       serviceAccountName: qr-code-backend-service-account
       containers:
       - name: qr-code-backend-app-backend
-        image: radhihudijan/qr-code-app-api:21687505068
+        image: radhihudijan/qr-code-app-api:21690533136
         ports:
         - name: http
           containerPort: 80

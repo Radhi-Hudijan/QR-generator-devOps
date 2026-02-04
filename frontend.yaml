@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: qr-code-frontend-app-frontend
-        image: docker.io/radhihudijan/qr-code-app-frontend:21687505068
+        image: docker.io/radhihudijan/qr-code-app-frontend:21690533136
         ports:
         - name: http
           containerPort: 3000
