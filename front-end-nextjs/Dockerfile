@@ -4,7 +4,7 @@ FROM node:22-alpine AS base
 
 WORKDIR /app
 
-COPY package*.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY package*.json yarn.lock* package-lock.json*  ./
 
 RUN \
     if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
