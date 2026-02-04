@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:    # Trigger only if dockerfiles are changed
+    paths:    # Trigger only if specific folders are changed
       - 'api/**'
       - 'front-end-nextjs/**'
       - '.github/workflows/build-docker.yaml'
