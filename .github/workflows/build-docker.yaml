@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:    # Trigger only if dockerfiles are changed
-      - '/api/dockerfile'
-      - '/front-end-nextjs/dockerfile'
+      - 'api/Dockerfile'
+      - 'front-end-nextjs/Dockerfile'
 
 jobs:
   publish_image:
