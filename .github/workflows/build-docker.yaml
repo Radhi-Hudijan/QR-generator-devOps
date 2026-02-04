@@ -5,8 +5,9 @@ on:
     branches:
       - main
     paths:    # Trigger only if dockerfiles are changed
-      - 'api/Dockerfile'
+      - 'api/**'
       - 'front-end-nextjs/**'
+      - '.github/workflows/build-docker.yaml'
 
 jobs:
   publish_image:
@@ -16,12 +17,12 @@ jobs:
         uses: actions/checkout@v4
       - name: build docker Image  
         run: |
-          docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend:latest1
+          docker build ./front-end-nextjs/ -t radhihudijan/qr-code-app-frontend::${{ github.run_id }}
           docker build ./api/ -t radhihudijan/qr-code-app-api:${{ github.run_id }}
       - name: push docker image to docker hub
         run: |
           docker login -u radhihudijan -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push radhihudijan/qr-code-app-frontend:latest1
+          docker push radhihudijan/qr-code-app-frontend::${{ github.run_id }}
           docker push radhihudijan/qr-code-app-api:${{ github.run_id }}
 
     
