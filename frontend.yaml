@@ -21,3 +21,19 @@ spec:
         ports:
         - name: http
           containerPort: 3000
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-code-frontend-service
+  namespace: qr-code-frontend-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: qr-code-frontend-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  

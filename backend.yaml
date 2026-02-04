@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: qr-code-backend-deployment
-  namespace: qr-code-backend-app
+  namespace: qr-code-frontend-app
   labels:
     app: qr-code-backend-app
 spec:
@@ -21,3 +21,18 @@ spec:
         ports:
         - name: http
           containerPort: 80
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-code-backend-service
+  namespace: qr-code-frontend-app
+spec:
+  type: ClusterIP
+  selector:
+    app: qr-code-backend-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80  
