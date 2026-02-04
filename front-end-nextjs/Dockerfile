@@ -21,7 +21,7 @@ RUN \
     elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
     else echo "Lockfile not found." && exit 1; \
     fi
-
+## port for Next.js app
 EXPOSE 3000
 
 CMD ["npm", "start"]
