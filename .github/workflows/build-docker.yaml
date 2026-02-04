@@ -21,7 +21,7 @@ jobs:
       - name: push docker image to docker hub
         run: |
           docker login -u radhihudijan -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push radhihudijan/qr-code-app-frontend:${{ github.run_id }}
+          docker push radhihudijan/qr-code-app-frontend:latest
           docker push radhihudijan/qr-code-app-api:${{ github.run_id }}
 
     
