@@ -8,7 +8,7 @@ export async function POST(request) {
   if (!url) {
     return NextResponse.json({ error: 'URL is required' }, { status: 400 });
   }
-
+// test comment
   try {
     const response = await axios.post(`http://qr-api-service/generate-qr/?url=${encodeURIComponent(url)}`);
     return NextResponse.json(response.data);
