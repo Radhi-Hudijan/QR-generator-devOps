@@ -1,13 +1,16 @@
 # devops-qr-code
 
-This is the sample application for the DevOps Project.
-It generates QR Codes for the provided URL, the front-end is in NextJS and the API is written in Python using FastAPI.
+This project is a cloud-native QR Code Generator application built with a Next.js frontend and a FastAPI backend, both fully containerized with Docker and deployed on Amazon EKS.
 
 ## Application
 
 **Front-End** - A web application where users can submit URLs.
 
 **API**: API that receives URLs and generates QR codes. The API stores the QR codes in cloud storage(AWS S3 Bucket).
+
+**Both services** are packaged as Docker images and pushed to Docker Hub via GitHub Actions.
+
+The application runs on Amazon EKS, using Kubernetes Services for internal communication.
 
 ## Running locally
 
@@ -37,4 +40,3 @@ The front-end code exits in the `front-end-nextjs` directory. You can run the fr
 ## Goal
 
 The goal is to get hands-on with DevOps practices like Containerization, CICD and monitoring.
-
