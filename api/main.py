@@ -25,15 +25,16 @@ app.add_middleware(
 )
 
 # AWS S3 Configuration
-s3 = boto3.client(
-    's3',
-    aws_access_key_id= os.getenv("AWS_ACCESS_KEY"),
-    aws_secret_access_key= os.getenv("AWS_SECRET_KEY"),
-    region_name='eu-west-1'
-)
+# s3 = boto3.client(
+#     's3',
+#     aws_access_key_id= os.getenv("AWS_ACCESS_KEY"),
+#     aws_secret_access_key= os.getenv("AWS_SECRET_KEY"),
+#     region_name='eu-west-1'
+# )
 
-bucket_name = os.getenv("AWS_S3_BUCKET_NAME")
+s3 = boto3.client('s3', region_name='eu-west-1')
 
+bucket_name = 'qr-test-app-2222'
 @app.post("/generate-qr/")
 async def generate_qr(url: str):
     # Generate QR Code
